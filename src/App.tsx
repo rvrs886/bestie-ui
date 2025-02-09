@@ -1,6 +1,9 @@
 import {createTheme, MantineProvider} from "@mantine/core";
 import '@mantine/core/styles.css';
-import {RegisterForm} from "./pages/register/RegisterForm";
+import {RegisterForm} from "./components/RegisterForm";
+import {RootLayout} from "./components/RootLayout";
+import {LoginForm} from "./components/LoginForm";
+import {AuthProvider} from "./utils/AuthContext";
 
 function App() {
 
@@ -9,11 +12,15 @@ function App() {
         primaryColor: 'blue'
     })
 
-  return (
-      <MantineProvider theme={appTheme}>
-        <RegisterForm />
-      </MantineProvider>
-  );
+    return (
+        <MantineProvider theme={appTheme}>
+            <AuthProvider>
+                <RootLayout>
+                    <LoginForm/>
+                </RootLayout>
+            </AuthProvider>
+        </MantineProvider>
+    );
 }
 
 export default App;
